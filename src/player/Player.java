@@ -19,7 +19,7 @@ public class Player {
     private Integer keyAmount;
     private Integer walkLeft;
     private ArrayList<Landmark> planetVisit;
-    private ArrayList<Mission> mission;
+    private ArrayList<Landmark> mission;
     private ArrayList<ExtraDoor> extraDoor;
     private Pair<Integer,Integer> position;
     private Pair<Integer,Integer> posBefore;
@@ -42,8 +42,12 @@ public class Player {
         System.out.println("extraDoor: " + extraDoor);
     }
 
-    public void setPosition(Pair<Integer,Integer> pos, GameMap gameMap) {
-        this.posBefore = this.position;
+    public void setPosition(Pair<Integer,Integer> pos, GameMap gameMap, boolean lastWalk) {
+        if(lastWalk){
+            this.posBefore = new Pair<>(-1,-1);
+        } else {
+            this.posBefore = this.position;
+        }
         gameMap.clearBlock(position.getFirst(),position.getSecond());
         this.position = pos;
         gameMap.setOneBlock(new PlayerBlock(this),pos.getFirst(),pos.getSecond());
@@ -79,7 +83,7 @@ public class Player {
         return position;
     }
 
-    public ArrayList<Mission> getMission() {
+    public ArrayList<Landmark> getMission() {
         return mission;
     }
 
@@ -105,5 +109,9 @@ public class Player {
 
     public ArrayList<ExtraDoor> getExtraDoor() {
         return extraDoor;
+    }
+
+    public void setPosBefore(Pair<Integer, Integer> posBefore) {
+        this.posBefore = posBefore;
     }
 }

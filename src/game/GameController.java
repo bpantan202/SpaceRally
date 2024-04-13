@@ -4,6 +4,7 @@ import block.*;
 import function.Pair;
 import player.Player;
 import special.RandomDice;
+import special.RandomNum;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,37 +18,83 @@ public class GameController {
 
     public GameController(){
         this.gameMap = new GameMap();
-        this.players = new ArrayList<Player>();
+        this.players = new ArrayList<>();
 
         setUpGame();
     }
 
     private void setUpGame() {
-        Block[][] dataGM = gameMap.getGameMap();
-        dataGM[1][0] = new Key(0,1);
-        dataGM[2][1] = new Mission(1,2);
-        dataGM[3][7] = new Landmark("Earth",3,7,3);
-        dataGM[3][2] = new ExtraDoor(2,2,3);
-        dataGM[1][6] = new SolidBlock(6,1);
-        Player pA = new Player("A",4,3);
-        pA.setKeyAmount(10);
 
-        dataGM[pA.getPosY()][pA.getPosX()] = new PlayerBlock(pA);
-//        int roleDice = RandomDice.roleDice();
-        int roleDice = 5;
+//        Block[][] defaultMap = gameMap.getDefaultMap();
+//        defaultMap[1][0] = new Key(0,1);
+//        defaultMap[2][1] = new Mission(1,2);
+//        defaultMap[3][7] = new Landmark("Earth",3,7,3);
+//        defaultMap[3][2] = new ExtraDoor(2,2,3);
+//        defaultMap[1][6] = new SolidBlock(6,1);
+//
+//        Block[][] dataGM = gameMap.getGameMap();
+//        for(int i=0; i<gameMap.getY_SIZE(); i++){
+//            for(int j=0; j< gameMap.getX_SIZE(); j++){
+//                if(defaultMap[i][j] != null){
+//                    dataGM[i][j] = defaultMap[i][j];
+//                }
+//            }
+//        }
+        gameMap.setToMapA();
+
+        System.out.println("Select amount player (2-4) : ");
+        Set<Integer> am = new HashSet<>();
+        am.add(2);
+        am.add(3);
+        am.add(4);
+        int amountPlayer = inputCheck(am);
+        for(int i=1; i<=amountPlayer; i++){
+            System.out.println("Player " + i + " name : ");
+            String name = new Scanner(System.in).nextLine();
+            newPlayer(name);
+        }
+
+
+        gameMap.printHoldMap();
+
+
+        for (int round = 1; round<=10; round++){
+            System.out.println("* * * * *  round " + round + "  * * * * *");
+            for (Player player : players) {
+                playTurn(player);
+            }
+        }
+
+
+    }
+
+    public void playTurn(Player player) {
+        gameMap.printHoldMap();
+        player.printPlayerStatus();
+        int roleDice = RandomDice.roleDice();
         System.out.println("roleDice: " + roleDice);
-        pA.setWalkLeft(roleDice);
-        while (pA.getWalkLeft() > 0){
-            Pair<Integer, Integer> walkTo = choseWalkBlock(pA);
+        player.setWalkLeft(roleDice);
+        while (player.getWalkLeft() > 0){
+            Pair<Integer, Integer> walkTo = choseWalkBlock(player);
+            if(walkTo.getFirst() == -1){
+                player.setWalkLeft(0);
+                player.setPosBefore(new Pair<>(-1,-1));
+                System.out.println("No walk way !!!");
+                return;
+            }
             System.out.println("walkTo: " + walkTo);
             Block blockBefore = gameMap.getGameMap()[walkTo.getSecond()][walkTo.getFirst()];
             System.out.println(blockBefore);
-            blockBefore.landOnBlock(pA);
-            pA.setPosition(walkTo, gameMap);
+            blockBefore.landOnBlock(player,gameMap);
+            if(player.getWalkLeft() == 1){
+                player.setPosition(walkTo, gameMap, true);
+            } else {
+                player.setPosition(walkTo, gameMap, false);
+            }
             System.out.println(walkTo);
-            pA.setWalkLeft(pA.getWalkLeft() - 1);
+            player.setWalkLeft(player.getWalkLeft() - 1);
             gameMap.printHoldMap();
-            pA.printPlayerStatus();
+            player.printPlayerStatus();
         }
     }
 
@@ -81,6 +128,9 @@ public class GameController {
                 set.add(4);
             }
         }
+        if(set.isEmpty()){
+            return new Pair<>(-1,-1);
+        }
 
         int walk = inputCheck(set);
         System.out.println("walk:" + walk);
@@ -91,7 +141,18 @@ public class GameController {
         return new Pair<>(posX,posY); //not do
     }
 
-    public static int inputCheck(Set<Integer> available) {
+    public void newPlayer(String name) {
+        Pair<Integer,Integer> position = RandomNum.randomPosition(gameMap.getX_SIZE(),gameMap.getY_SIZE(), gameMap);
+
+        Player player = new Player(name, position.getFirst(), position.getSecond());
+        Block[][] dataGM = gameMap.getGameMap();
+        dataGM[player.getPosY()][player.getPosX()] = new PlayerBlock(player);
+        players.add(player);
+        System.out.println(name + " spawn at " + position);
+//        return player;
+    }
+
+    public int inputCheck(Set<Integer> available) {
 //        System.out.println(available);
         int choice = new Scanner(System.in).nextInt();
         while (!available.contains(choice)) {

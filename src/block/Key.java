@@ -1,5 +1,7 @@
 package block;
 
+import game.GameController;
+import game.GameMap;
 import player.Player;
 
 public class Key extends Item{
@@ -8,9 +10,11 @@ public class Key extends Item{
     }
 
     @Override
-    public void landOnBlock(Player player) {
+    public void landOnBlock(Player player, GameMap gameMap) {
         player.setKeyAmount(player.getKeyAmount() + 1);
+        gameMap.spawnKey();
     }
+
 
     @Override
     public char ShowStatus() {

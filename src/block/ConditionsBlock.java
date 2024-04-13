@@ -1,5 +1,6 @@
 package block;
 
+import game.GameMap;
 import player.Player;
 
 public abstract class ConditionsBlock extends Block{
@@ -9,7 +10,7 @@ public abstract class ConditionsBlock extends Block{
     }
 
     @Override
-    public void landOnBlock(Player player) {
+    public void landOnBlock(Player player, GameMap gameMap) {
         return;
     }
 }

@@ -1,5 +1,6 @@
 package block;
 
+import game.GameMap;
 import player.Player;
 
 public class SolidBlock extends Block{
@@ -13,7 +14,7 @@ public class SolidBlock extends Block{
     }
 
     @Override
-    public void landOnBlock(Player player) {
+    public void landOnBlock(Player player, GameMap gameMap) {
         return;
     }
 
