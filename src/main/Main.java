@@ -45,6 +45,7 @@ import pane.RootPane;
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("SpaceRally");
+            primaryStage.setFullScreen(true);
             primaryStage.show();
             primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
