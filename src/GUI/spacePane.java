@@ -14,15 +14,15 @@ public class spacePane extends GridPane{
 	public spacePane() {
 		super();
 		this.allCells = new ArrayList<spaceCell>();
-		this.setHgap(8);
-		this.setVgap(8);
-		this.setPadding(new Insets(8));
+		this.setHgap(10);
+		this.setVgap(10);
+		this.setPadding(new Insets(20));
 		this.setAlignment(Pos.CENTER);
-		this.setPrefWidth(1500);
-		this.setPrefHeight(800);
+		this.setPrefWidth(1000);
+		this.setPrefHeight(500);
 		this.setBorder(new Border(new BorderStroke(Color.LIGHTGRAY, BorderStrokeStyle.SOLID, 
 				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		this.setBackground(new Background(new BackgroundFill(null, CornerRadii.EMPTY, Insets.EMPTY)));
 		
 		for(int i = 0;i<10;i++) {
 			for(int j =0;j<7;j++) {

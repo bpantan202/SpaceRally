@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import game.GameController;
+import pane.RootPane;
 
 //public class Main {
 //    public static void main(String[] args)  {
@@ -23,26 +24,27 @@ import game.GameController;
         public void start(Stage primaryStage) throws Exception {
             // TODO Auto-generated method stub
 
-            HBox root = new HBox();
-            root.setPadding(new Insets(10));
-            root.setSpacing(10);
-            root.setPrefHeight(800);
+//            HBox root = new HBox();
+//            root.setPadding(new Insets(10));
+//            root.setSpacing(10);
+//            root.setPrefHeight(900);
+//
+//            root.setPrefWidth(1600);
+//            //GameLogic.getInstance();
+//            spacePane spacePane = new spacePane();
+//            //ControlPane controlPane = new ControlPane(ticTacToePane);
+//
+//            //GameLogic.getInstance().setControlPane(controlPane);
+//
+//
+//            root.getChildren().add(spacePane);
+//            //root.getChildren().add(controlPane);
 
-            root.setPrefWidth(1500);
-            //GameLogic.getInstance();
-            spacePane spacePane = new spacePane();
-            //ControlPane controlPane = new ControlPane(ticTacToePane);
-
-            //GameLogic.getInstance().setControlPane(controlPane);
-
-
-            root.getChildren().add(spacePane);
-            //root.getChildren().add(controlPane);
-
-            Scene scene = new Scene(root);
+            RootPane rootPane = RootPane.getRootPane();
+            Scene scene = new Scene(rootPane,1600,900);
 
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Tic-Tac-Toe");
+            primaryStage.setTitle("SpaceRally");
             primaryStage.show();
             primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override

@@ -1,5 +1,6 @@
 package pane;
 
+import GUI.spacePane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -26,6 +27,9 @@ public class RootPane extends StackPane {
         this.setAlignment(Pos.TOP_CENTER);
         this.getChildren().add(paintPane);
         paintPane.drawTurn();
+
+        spacePane spacePane = new spacePane();
+        this.getChildren().add(spacePane);
     }
 
     public static RootPane getRootPane() {

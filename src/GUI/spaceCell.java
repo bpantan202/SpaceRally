@@ -24,13 +24,9 @@ public class spaceCell extends Pane {
 		this.xURL = "x.png";
 		this.setxPosition(x);
 		this.setyPosition(y);
-		setPrefSize(100, 100);
-		setPrefHeight(100);
-		setBaseColor(Color.MOCCASIN);
+		setPrefSize(80, 80);
+		setBaseColor(Color.rgb(230, 230, 250));
 		initializeCellColor();
-
-
-
 
 		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
