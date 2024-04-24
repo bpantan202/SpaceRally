@@ -4,16 +4,24 @@ import block.ExtraDoor;
 import block.Landmark;
 import block.Mission;
 import block.PlayerBlock;
+import function.Load;
 import function.Pair;
 import game.GameMap;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class Player {
 
+    private Image playerImg;
     private String playerName;
     private Integer score;
     private Integer keyAmount;
@@ -54,6 +62,31 @@ public class Player {
 //        System.out.println("+++");
     }
 
+    //this one is the corner player pic
+    public void drawPlayer(GraphicsContext gc, String color, int posX, int posY) {
+        if (Objects.equals(color, "yellow")) {
+            playerImg = Load.yellowPlayer;
+        } else if (Objects.equals(color, "red")) {
+            playerImg = Load.redPlayer;
+        } else if (Objects.equals(color, "green")) {
+            playerImg = Load.greenPlayer;
+        } else {
+            playerImg = Load.grayPlayer;
+        }
+        int diameter = 150;
+        gc.setFill(Color.WHITE);
+        gc.fillOval(posX,posY,diameter,diameter);
+
+        double imageWidth = 100; // Adjust the width of the player image
+        double imageHeight = 100; // Adjust the height of the player image
+        gc.drawImage(playerImg, posX + (diameter - imageWidth) / 2, posY + (diameter - imageHeight) / 2, imageWidth, imageHeight);
+
+
+        gc.setFill(Color.WHITE);
+        gc.setFont(new Font(20));
+        gc.fillText("Score : "+ getScore(),posX+35,posY+175 );
+    }
+
     public Integer getKeyAmount() {
         return keyAmount;
     }
@@ -91,7 +124,7 @@ public class Player {
         return planetVisit;
     }
 
-    public Integer getScore() {
+    public int getScore() {
         return score;
     }
 
@@ -113,5 +146,9 @@ public class Player {
 
     public void setPosBefore(Pair<Integer, Integer> posBefore) {
         this.posBefore = posBefore;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 }

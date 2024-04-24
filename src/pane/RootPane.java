@@ -1,6 +1,7 @@
 package pane;
 
 import GUI.spacePane;
+import function.Load;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -30,6 +31,7 @@ public class RootPane extends StackPane {
 //        this.getChildren().add(spacePane);
 //    }
 private RootPane() {
+    Load.loadPlayer();
     paintPane = new PaintPane();
     Image image = new Image("gif2.gif");
 
