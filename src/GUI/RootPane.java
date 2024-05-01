@@ -54,7 +54,7 @@ private RootPane() {
     this.getChildren().add(paintPane);
     paintPane.drawTurn();
 
-    spacePane spacePane = new spacePane();
+    SpacePane spacePane = new SpacePane();
     this.getChildren().add(spacePane);
 }
 

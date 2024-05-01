@@ -7,7 +7,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 //import logic.GameLogic;
 
-public class spaceCell extends Pane {
+public class SpaceCell extends Pane {
 
 	private boolean isDrawn;
 	private Color baseColor;
@@ -18,7 +18,7 @@ public class spaceCell extends Pane {
 	private String xURL;
 	private Button button=new Button();
 
-	public spaceCell(int x, int y) {
+	public SpaceCell(int x, int y) {
 		super();
 		this.oURL = "o.png";
 		this.xURL = "x.png";

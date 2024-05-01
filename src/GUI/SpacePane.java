@@ -7,13 +7,13 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class spacePane extends GridPane{
+public class SpacePane extends GridPane{
 	
-	private ArrayList<spaceCell> allCells;
+	private ArrayList<SpaceCell> allCells;
 	
-	public spacePane() {
+	public SpacePane() {
 		super();
-		this.allCells = new ArrayList<spaceCell>();
+		this.allCells = new ArrayList<SpaceCell>();
 		this.setHgap(10);
 		this.setVgap(10);
 		this.setPadding(new Insets(20));
@@ -26,14 +26,14 @@ public class spacePane extends GridPane{
 		
 		for(int i = 0;i<10;i++) {
 			for(int j =0;j<7;j++) {
-				this.allCells.add(new spaceCell(i,j));
+				this.allCells.add(new SpaceCell(i,j));
 				this.add(allCells.get((i*7)+j), i, j);
 				//System.out.println("help");
 			}
 		}
 	}
 
-	public ArrayList<spaceCell> getAllCells() {
+	public ArrayList<SpaceCell> getAllCells() {
 		return allCells;
 	}
 	
