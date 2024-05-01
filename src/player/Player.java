@@ -76,15 +76,19 @@ public class Player {
         int diameter = 150;
         gc.setFill(Color.WHITE);
         gc.fillOval(posX,posY,diameter,diameter);
+        gc.fillOval(posX+100,posY,diameter,diameter);
+        gc.fillRect(posX+diameter/2,posY,100,diameter);
 
         double imageWidth = 100; // Adjust the width of the player image
         double imageHeight = 100; // Adjust the height of the player image
-        gc.drawImage(playerImg, posX + (diameter - imageWidth) / 2, posY + (diameter - imageHeight) / 2, imageWidth, imageHeight);
+        gc.drawImage(playerImg, posX + (diameter - imageWidth) / 2, posY + (diameter - imageHeight) / 2, imageWidth/1.1, imageHeight/1.1);
 
 
-        gc.setFill(Color.WHITE);
+
+        gc.setFill(Color.BLACK);
         gc.setFont(new Font(20));
-        gc.fillText("Score : "+ getScore(),posX+35,posY+175 );
+        gc.fillText("Score : "+ getScore(),posX+130,posY+60 );
+
     }
 
     public Integer getKeyAmount() {
