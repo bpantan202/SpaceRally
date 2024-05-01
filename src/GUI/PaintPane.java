@@ -1,4 +1,4 @@
-package pane;
+package GUI;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

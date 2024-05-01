@@ -1,16 +1,12 @@
 package main;
 
-import GUI.spacePane;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import game.GameController;
-import pane.RootPane;
+import GUI.RootPane;
 
 //public class Main {
 //    public static void main(String[] args)  {
