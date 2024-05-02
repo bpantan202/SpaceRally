@@ -1,5 +1,7 @@
 package block;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import player.Player;
 
 import java.util.Scanner;
@@ -48,6 +50,11 @@ public class ExtraDoor extends ConditionsBlock{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void draw(GraphicsContext gc) {
+        gc.drawImage(new Image("ExtraDoor.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
     }
 
 }

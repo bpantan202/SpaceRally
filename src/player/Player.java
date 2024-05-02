@@ -1,11 +1,9 @@
 package player;
 
-import block.ExtraDoor;
-import block.Landmark;
-import block.Mission;
-import block.PlayerBlock;
+import block.*;
 import function.Load;
 import function.Pair;
+import game.GameController;
 import game.GameMap;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -52,15 +50,21 @@ public class Player {
 
     public void setPosition(Pair<Integer,Integer> pos, GameMap gameMap, boolean lastWalk) {
         if(lastWalk){
-            this.posBefore = new Pair<>(-1,-1);
+            this.posBefore = new Pair<>(-99,-99);
         } else {
             this.posBefore = this.position;
         }
+
+
+        Block[][] gameMap1 = GameController.getInstance().getGameMap().getGameMap();
+        Block playerBlock = gameMap1[position.getSecond()][position.getFirst()];
+        gameMap.setOneBlock(playerBlock,pos.getFirst(),pos.getSecond());
+        playerBlock.setPosition(pos.getFirst(),pos.getSecond());
         gameMap.clearBlock(position.getFirst(),position.getSecond());
         this.position = pos;
-        gameMap.setOneBlock(new PlayerBlock(this),pos.getFirst(),pos.getSecond());
 //        System.out.println("+++");
     }
+
 
     //this one is the corner player pic
     public void drawPlayer(GraphicsContext gc, String color, int posX, int posY) {
@@ -76,19 +80,15 @@ public class Player {
         int diameter = 150;
         gc.setFill(Color.WHITE);
         gc.fillOval(posX,posY,diameter,diameter);
-        gc.fillOval(posX+100,posY,diameter,diameter);
-        gc.fillRect(posX+diameter/2,posY,100,diameter);
 
         double imageWidth = 100; // Adjust the width of the player image
         double imageHeight = 100; // Adjust the height of the player image
-        gc.drawImage(playerImg, posX + (diameter - imageWidth) / 2, posY + (diameter - imageHeight) / 2, imageWidth/1.1, imageHeight/1.1);
+        gc.drawImage(playerImg, posX + (diameter - imageWidth) / 2, posY + (diameter - imageHeight) / 2, imageWidth, imageHeight);
 
 
-
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.WHITE);
         gc.setFont(new Font(20));
-        gc.fillText("Score : "+ getScore(),posX+130,posY+60 );
-
+        gc.fillText("Score : "+ getScore(),posX+35,posY+175 );
     }
 
     public Integer getKeyAmount() {
@@ -155,4 +155,5 @@ public class Player {
     public String getPlayerName() {
         return playerName;
     }
+
 }

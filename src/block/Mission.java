@@ -1,6 +1,9 @@
 package block;
 
+import GUI.RenderableHolder;
 import game.GameMap;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import player.Player;
 import special.RandomNum;
 import usage.ConsoleShow;
@@ -12,6 +15,7 @@ public class Mission extends Item {
 
     @Override
     public void landOnBlock(Player player, GameMap gameMap) {
+        RenderableHolder.getInstance().removeThis(this);
         gameMap.spawnMission();
         randomMission(player, gameMap);
     }
@@ -33,5 +37,15 @@ public class Mission extends Item {
     @Override
     public char ShowStatus() {
         return 'M';
+    }
+
+    @Override
+    public int getZ() {
+        return 19;
+    }
+
+    @Override
+    public void draw(GraphicsContext gc) {
+        gc.drawImage(new Image("Mission.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
     }
 }

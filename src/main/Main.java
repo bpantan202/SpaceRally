@@ -1,5 +1,8 @@
 package main;
 
+import GUI.SpaceCell;
+import GUI.SpacePane;
+import game.GameController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -16,10 +19,10 @@ import GUI.RootPane;
 
 
     public class Main extends Application {
+
         @Override
         public void start(Stage primaryStage) throws Exception {
             // TODO Auto-generated method stub
-
 //            HBox root = new HBox();
 //            root.setPadding(new Insets(10));
 //            root.setSpacing(10);
@@ -36,8 +39,16 @@ import GUI.RootPane;
 //            root.getChildren().add(spacePane);
 //            //root.getChildren().add(controlPane);
 
+
             RootPane rootPane = RootPane.getRootPane();
             Scene scene = new Scene(rootPane,1600,900);
+
+            GameController.getInstance();
+//            rootPane.setGameController() = GameController.getInstance();
+//            SpacePane spacePane = new SpacePane();
+//            ControlPane controlPane = new ControlPane(ticTacToePane);
+
+//            GameController.getInstance().setControlPane(controlPane);
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("SpaceRally");
@@ -50,7 +61,8 @@ import GUI.RootPane;
                     System.exit(0);
                 }
             });
-
+//            GameController gameInstance = GameController.getInstance();
+//            gameInstance.getGameMap().printHoldMap();
         }
 
 

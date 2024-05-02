@@ -1,19 +1,22 @@
 package block;
 
 import game.GameMap;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import player.Player;
 import special.RandomNum;
 
 public class Landmark extends ConditionsBlock{
 
     private String name;
-
+    private String picture;
     private Integer point;
 
-    public Landmark(String name, int point, int posX, int posY) {
+    public Landmark(String name,String picture, int point, int posX, int posY) {
         super(posX, posY);
         this.name = name;
         this.point = point;
+        this.picture = picture;
     }
 
     @Override
@@ -40,5 +43,11 @@ public class Landmark extends ConditionsBlock{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void draw(GraphicsContext gc) {
+        gc.drawImage(new Image(this.picture),getDisplayPosX() ,getDisplayPosY(),80,80);
+//        gc.fillText(this.name,getDisplayPosX(),getDisplayPosY());
     }
 }

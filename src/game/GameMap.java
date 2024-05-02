@@ -1,5 +1,7 @@
 package game;
 
+import GUI.Img;
+import GUI.RenderableHolder;
 import block.*;
 import function.Pair;
 import player.Player;
@@ -26,9 +28,15 @@ public class GameMap {
 
         for(int i=0; i<Y_SIZE; i++){
             for(int j=0; j<X_SIZE; j++){
-                gameMap[i][j] = new WalkAbleBlock(i,j);
+                gameMap[i][j] = new WalkAbleBlock(j,i);
+//                RenderableHolder.getInstance().add(gameMap[i][j]);
             }
         }
+
+        this.setToMapA();
+//        RenderableHolder.getInstance().setObjects(new ArrayList<>());
+
+        RenderableHolder.getInstance().add(new Img());
     }
 
     public void setOneBlock(Block block, int x, int y){
@@ -44,14 +52,14 @@ public class GameMap {
     }
 
     public void printHoldMap(){
-        for(int i=0; i<Y_SIZE; i++){
-            String gen = "";
-            for(int j=0; j<X_SIZE; j++){
-                gen += (gameMap[i][j]).ShowStatus() + " ";
-            }
-            System.out.println(gen);
-        }
-        System.out.println("===========================");
+//        for(int i=0; i<Y_SIZE; i++){
+//            String gen = "";
+//            for(int j=0; j<X_SIZE; j++){
+//                gen += (gameMap[i][j]).ShowStatus() + " ";
+//            }
+//            System.out.println(gen);
+//        }
+//        System.out.println("===========================");
     }
 
     public boolean checkCanWalk(int x, int y, Player player) {
@@ -60,7 +68,7 @@ public class GameMap {
 
     public boolean checkAvailable(Pair<Integer,Integer> position) {
         Block block = gameMap[position.getSecond()][position.getFirst()];
-        if(block instanceof Item){return false;}
+        if(block instanceof Item || block instanceof Landmark){return false;}
         return block instanceof WalkAbleBlock;
     }
 
@@ -95,13 +103,13 @@ public class GameMap {
     }
 
     public void addLandmark(String name, int point, int posX, int posY) {
-        Landmark landmark = new Landmark("Earth",3,7,3);
+        Landmark landmark = new Landmark(name,"landmark/"+name+".png",3,7,3);
         defaultMap[posY][posX] = landmark;
         landmarkArrayList.add(landmark);
     }
 
     public void setToMapA() {
-        resetHoldMap();
+//        resetHoldMap();
 //        defaultMap[1][0] = new Key(0,1);
 //        defaultMap[2][1] = new Mission(1,2);
         addLandmark("Earth",8,7,3);
@@ -110,11 +118,6 @@ public class GameMap {
         defaultMap[1][7] = new SolidBlock(7,1);
         defaultMap[1][8] = new SolidBlock(8,1);
         defaultMap[1][9] = new SolidBlock(9,1);
-        spawnKey();
-        spawnKey();
-        spawnKey();
-        spawnMission();
-        spawnMission();
 
         for(int i=0; i<Y_SIZE; i++){
             for(int j=0; j< X_SIZE; j++){
@@ -123,6 +126,23 @@ public class GameMap {
                 }
             }
         }
+        addShow();
 
+        spawnKey();
+        spawnKey();
+        spawnKey();
+        spawnMission();
+        spawnMission();
+
+
+
+    }
+
+    public void addShow() {
+        for(int i=0; i<Y_SIZE; i++){
+            for(int j=0; j<X_SIZE; j++){
+                RenderableHolder.getInstance().add(gameMap[i][j]);
+            }
+        }
     }
 }

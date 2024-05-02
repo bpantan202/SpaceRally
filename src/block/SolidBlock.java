@@ -1,6 +1,8 @@
 package block;
 
 import game.GameMap;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import player.Player;
 
 public class SolidBlock extends Block{
@@ -21,5 +23,10 @@ public class SolidBlock extends Block{
     @Override
     public boolean canWalk(Player player) {
         return false;
+    }
+
+    @Override
+    public void draw(GraphicsContext gc) {
+        gc.drawImage(new Image("SolidBlock.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
     }
 }
