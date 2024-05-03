@@ -52,7 +52,7 @@ public class GameController {
 //        am.add(4);
 //        int amPlayer = inputCheck(am);
 //        this.amountPlayer = amPlayer;
-        this.amountPlayer = 4; ////
+        this.amountPlayer = 2; ////
 
 
         newPlayer("Gray");

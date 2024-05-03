@@ -40,7 +40,7 @@ public class Main2 extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("SpaceRally");
-        primaryStage.setFullScreen(true);
+//        primaryStage.setFullScreen(true);
         primaryStage.show();
 //        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 //            @Override

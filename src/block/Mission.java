@@ -21,16 +21,21 @@ public class Mission extends Item {
     }
 
     public void randomMission(Player player, GameMap gameMap) {
-        if(player.getMission().size() > 2 || player.getMission().size() >= gameMap.getLandmarkArrayList().size()){
+        if(player.getMission().size() > 1 || (player.getMission().size() + player.getPlanetVisit().size()) >= gameMap.getLandmarkArrayList().size() ){
             return;
         }
 
         int num = RandomNum.randomNum(0, gameMap.getLandmarkArrayList().size() - 1);
         Landmark missionLandmark = gameMap.getLandmarkArrayList().get(num);
-        while (!gameMap.getLandmarkArrayList().contains(missionLandmark)){
+
+        while (player.getMission().contains(missionLandmark) || player.getPlanetVisit().contains(missionLandmark)){
             num = RandomNum.randomNum(0, gameMap.getLandmarkArrayList().size() - 1);
             missionLandmark = gameMap.getLandmarkArrayList().get(num);
         }
+//        while (!gameMap.getLandmarkArrayList().contains(missionLandmark)){
+//            num = RandomNum.randomNum(0, gameMap.getLandmarkArrayList().size() - 1);
+//            missionLandmark = gameMap.getLandmarkArrayList().get(num);
+//        }
         player.getMission().add(missionLandmark);
     }
 
