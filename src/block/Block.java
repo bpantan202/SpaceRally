@@ -36,11 +36,11 @@ public abstract class Block implements ConsoleShow, Renderable {
     }
 
     public int getDisplayPosX() {
-        return position.getFirst() * 100;
+        return (position.getFirst() * 100) + 50;
     }
 
     public int getDisplayPosY() {
-        return position.getSecond() * 100;
+        return (position.getSecond() * 100) + 170;
     }
 
     @Override
