@@ -29,6 +29,8 @@ public class Main2 extends Application {
         ControlPane controlPane = new ControlPane();
         rootPane.getChildren().add(controlPane);
 
+        MenuPane menuPane = new MenuPane();
+        rootPane.getChildren().add(menuPane);
 
 //        gc.drawImage(new Image("Key.png"),100,100,100,100);
 //        GameController.getInstance();

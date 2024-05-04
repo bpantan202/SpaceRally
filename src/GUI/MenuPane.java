@@ -49,7 +49,7 @@ public class MenuPane extends Pane {
                 //MenuPane menuPane = new MenuPane();
                 RootPane rootPane = RootPane.getRootPane();
                 rootPane.getChildren().remove(MenuPane.this);
-                System.out.println("Play button clicked!");
+                //System.out.println("Play button clicked!");
             }
         });
 
