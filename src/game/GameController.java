@@ -64,7 +64,6 @@ public class GameController {
             newPlayer("Yellow");
         }
 
-
         gameMap.printHoldMap();
 
         playTurn();

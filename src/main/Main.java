@@ -22,7 +22,7 @@ import GUI.RootPane;
 
         @Override
         public void start(Stage primaryStage) throws Exception {
-            // TODO Auto-generated method stub
+//             TODO Auto-generated method stub
 //            HBox root = new HBox();
 //            root.setPadding(new Insets(10));
 //            root.setSpacing(10);
