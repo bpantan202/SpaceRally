@@ -11,6 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import player.Player;
 
 import java.util.ArrayList;
 
@@ -26,8 +27,9 @@ public class Main2 extends Application {
         GraphicsContext gc = paintPane.getGraphicsContext2D();
         RenderableHolder renderableHolder = RenderableHolder.getInstance();
 
-        ControlPane controlPane = new ControlPane();
-        rootPane.getChildren().add(controlPane);
+//        ControlPane controlPane = new ControlPane();
+//        rootPane.getChildren().add(controlPane);
+
 
 
 //        gc.drawImage(new Image("Key.png"),100,100,100,100);
@@ -50,6 +52,13 @@ public class Main2 extends Application {
 //            }
 //        });
         GameController gameController = GameController.getInstance();
+
+        PlayerStatusPane playerStatusPane = new PlayerStatusPane(gameController.getPlayers(),gc);
+        rootPane.getChildren().add(playerStatusPane);
+
+        ControlPane controlPane = new ControlPane();
+        rootPane.getChildren().add(controlPane);
+
         paintPane.drawAll(renderableHolder.getObjects());
         ArrayList<Boolean> valid =  GameController.getInstance().askValid();
         controlPane.setValidButton(valid.get(0), valid.get(1), valid.get(2), valid.get(3));
