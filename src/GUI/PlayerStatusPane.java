@@ -57,9 +57,12 @@ public class PlayerStatusPane extends Pane implements Renderable{
              gc.setFont(Font.font("Courier New", FontWeight.EXTRA_BOLD, 40));
              gc.fillText(""+players.get(i).getScore(), x + 360, y + 40);
 
-
              gc.setFont(Font.font("Courier New", FontWeight.BOLD, 14));
-             gc.fillText("Keys: " + players.get(i).getKeyAmount(), x + 150, y + 30);
+             gc.fillText("Keys" , x + 150, y + 30);
+             Image keyImage = new Image("Key.png");
+             for(int j = 0 ; j < players.get(i).getKeyAmount() ; j ++){
+                 gc.drawImage(keyImage, x + 195 + (j*20), y + 15, 20, 20);
+             }
 
              gc.fillText("PlanetVisited: " + players.get(i).getPlanetVisit(), x + 150, y + 50);
 
