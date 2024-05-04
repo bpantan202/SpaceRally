@@ -12,6 +12,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -27,6 +29,7 @@ public class Main2 extends Application {
         RenderableHolder renderableHolder = RenderableHolder.getInstance();
 
         ControlPane controlPane = new ControlPane();
+
         rootPane.getChildren().add(controlPane);
 
 
@@ -53,6 +56,7 @@ public class Main2 extends Application {
         paintPane.drawAll(renderableHolder.getObjects());
         ArrayList<Boolean> valid =  GameController.getInstance().askValid();
         controlPane.setValidButton(valid.get(0), valid.get(1), valid.get(2), valid.get(3));
+        controlPane.updateGameText(GameController.getInstance().getPlayerDisplay());
 
         AnimationTimer animationTimer = new AnimationTimer() {
 

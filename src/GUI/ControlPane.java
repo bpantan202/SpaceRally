@@ -1,10 +1,15 @@
 package GUI;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+
+import static java.awt.Font.BOLD;
 
 public class ControlPane extends VBox{
 	
@@ -18,15 +23,20 @@ public class ControlPane extends VBox{
 		super();
 		setAlignment(Pos.BOTTOM_RIGHT);
 		setPrefWidth(300);
-		setSpacing(20);
+		setSpacing(10);
 		initializeGameText();
 		initializeLeftButton();
 		initializeRightButton();
 		initializeUpButton();
 		initializeDownButton();
 
-		getChildren().addAll(gameText,leftButton,rightButton,upButton,downButton);
+		HBox leftRightBox = new HBox(70);
+		leftRightBox.getChildren().add(leftButton);
+		leftRightBox.getChildren().add(rightButton);
+		leftRightBox.setAlignment(Pos.CENTER_RIGHT);
+		VBox.setMargin(leftRightBox, new Insets(0, 20, 0, 0));
 
+		getChildren().addAll(gameText,upButton,leftRightBox,downButton);
 	}
 	
 	private void initializeGameText() {
@@ -38,28 +48,35 @@ public class ControlPane extends VBox{
 	public void updateGameText(String text) {
 		gameText.setText(text);
 	}
-	
+
 	private void initializeLeftButton() {
 		this.leftButton=new Button("Left");
-		leftButton.setPrefWidth(100);
+		leftButton.setPrefSize(50,50);
 		leftButton.setOnAction(e->newLeftButtonHandler());
+		leftButton.setStyle("-fx-text-fill: blue");
 	}
 	private void initializeRightButton() {
 		this.rightButton=new Button("Right");
-		rightButton.setPrefWidth(100);
+		rightButton.setPrefSize(50,50);
 		rightButton.setOnAction(e->newRightButtonHandler());
+		rightButton.setStyle("-fx-text-fill: blue");
 	}
 
 	private void initializeUpButton() {
 		this.upButton=new Button("Up");
-		upButton.setPrefWidth(100);
+		upButton.setPrefSize(50,50);
 		upButton.setOnAction(e->newUpButtonHandler());
+		upButton.setStyle("-fx-text-fill: blue");
+		VBox.setMargin(upButton, new Insets(0, 80, 0, 0));
 	}
 	private void initializeDownButton() {
 		this.downButton=new Button("Down");
-		downButton.setPrefWidth(100);
+		downButton.setPrefSize(50,50);
 		downButton.setOnAction(e->newDownButtonHandler());
+		downButton.setStyle("-fx-text-fill: blue");
+		VBox.setMargin(downButton, new Insets(0, 80, 20, 0));
 	}
+
 	private void newLeftButtonHandler() {
 		updateGameText("Left");
 	}
