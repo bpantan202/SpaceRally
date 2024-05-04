@@ -1,7 +1,9 @@
 package game;
 
 import GUI.ControlPane;
+import GUI.RenderableHolder;
 import block.*;
+import display.Arrow;
 import function.Pair;
 import player.Player;
 import special.RandomDice;
@@ -16,10 +18,13 @@ public class GameController {
     private Integer turnLeft;
     private Integer playerNow;
     private Integer amountPlayer;
+    private ArrayList<Arrow> arrowDisplay;
+
 
     public GameController(){
         this.gameMap = new GameMap();
         this.players = new ArrayList<>();
+        this.arrowDisplay = new ArrayList<>();
         this.turnLeft = 10;
         this.playerNow = 0;
 
@@ -52,7 +57,7 @@ public class GameController {
 //        am.add(4);
 //        int amPlayer = inputCheck(am);
 //        this.amountPlayer = amPlayer;
-        this.amountPlayer = 4; ////
+        this.amountPlayer = 2; ////
 
 
         newPlayer("Gray");
@@ -112,36 +117,36 @@ public class GameController {
 //        }
     }
 
-    public void playTurnEach() {
-        Player player = players.get(playerNow);
-        System.out.println(player.getWalkLeft());
-        if(player.getWalkLeft() > 0){
-            Pair<Integer, Integer> walkTo = choseWalkBlock(player);
-            if (walkTo.getFirst() == -1) {
-                player.setWalkLeft(0);
-                player.setPosBefore(new Pair<>(-99, -99));
-                System.out.println("No walk way !!!");
-                return;
-            }
-            System.out.println("walkTo: " + walkTo);
-            Block blockBefore = gameMap.getGameMap()[walkTo.getSecond()][walkTo.getFirst()];
-            System.out.println(blockBefore);
-            blockBefore.landOnBlock(player, gameMap);
-            if (player.getWalkLeft() == 1) {
-                player.setPosition(walkTo, gameMap, true);
-            } else {
-                player.setPosition(walkTo, gameMap, false);
-            }
-            System.out.println(walkTo);
-            player.setWalkLeft(player.getWalkLeft() - 1);
-            gameMap.printHoldMap();
-            player.printPlayerStatus();
-
-            if(player.getWalkLeft() <= 0){
-                nextPlayer();
-            }
-        }
-    }
+//    public void playTurnEach() {
+//        Player player = players.get(playerNow);
+//        System.out.println(player.getWalkLeft());
+//        if(player.getWalkLeft() > 0){
+//            Pair<Integer, Integer> walkTo = choseWalkBlock(player);
+//            if (walkTo.getFirst() == -1) {
+//                player.setWalkLeft(0);
+//                player.setPosBefore(new Pair<>(-99, -99));
+//                System.out.println("No walk way !!!");
+//                return;
+//            }
+//            System.out.println("walkTo: " + walkTo);
+//            Block blockBefore = gameMap.getGameMap()[walkTo.getSecond()][walkTo.getFirst()];
+//            System.out.println(blockBefore);
+//            blockBefore.landOnBlock(player, gameMap);
+//            if (player.getWalkLeft() == 1) {
+//                player.setPosition(walkTo, gameMap, true);
+//            } else {
+//                player.setPosition(walkTo, gameMap, false);
+//            }
+//            System.out.println(walkTo);
+//            player.setWalkLeft(player.getWalkLeft() - 1);
+//            gameMap.printHoldMap();
+//            player.printPlayerStatus();
+//
+//            if(player.getWalkLeft() <= 0){
+//                nextPlayer();
+//            }
+//        }
+//    }
 
     public void playTurnEach(int walk) {
         Player player = players.get(playerNow);
@@ -179,8 +184,8 @@ public class GameController {
     public Pair<Integer,Integer> generateNextBlock(Player player, int walk){
         int posX = player.getPosX();
         int posY = player.getPosY();
-        int posXBefore = player.getPosXBefore();
-        int posYBefore = player.getPosYBefore();
+//        int posXBefore = player.getPosXBefore();
+//        int posYBefore = player.getPosYBefore();
         Set<Integer> set = new HashSet<>();
 
         System.out.println("walk:" + walk);
@@ -202,29 +207,47 @@ public class GameController {
         int posXBefore = player.getPosXBefore();
         int posYBefore = player.getPosYBefore();
 
+        removeArrow();
+
         if(posX-1 >= 0 && posXBefore != posX-1){
             if(gameMap.checkCanWalk(posX-1,posY,player)) {
+                genArrow( new Arrow("arrow/left.png",posX-1,posY) );
                 left = true;
             }
         }
         if(posX+1 < gameMap.getX_SIZE() && posXBefore != posX+1){
             if(gameMap.checkCanWalk(posX+1,posY,player)) {
+                genArrow( new Arrow("arrow/right.png",posX+1,posY) );
                 right = true;
             }
         }
         if(posY-1 >= 0 && posYBefore != posY-1){
             if(gameMap.checkCanWalk(posX,posY-1,player)) {
+                genArrow( new Arrow("arrow/up.png",posX,posY-1) );
                 up = true;
             }
         }
         if(posY+1 < gameMap.getY_SIZE() && posYBefore != posY+1){
             if(gameMap.checkCanWalk(posX,posY+1,player)) {
+                genArrow( new Arrow("arrow/down.png",posX,posY+1) );
                 down = true;
             }
         }
         ArrayList<Boolean> res = new ArrayList<>(Arrays.asList(left, right, up, down));
         System.out.println(res + "_"+ posXBefore );
         return res;
+    }
+
+    public void genArrow(Arrow arrow) {
+        RenderableHolder.getInstance().add(arrow);
+        arrowDisplay.add(arrow);
+    }
+
+    public void removeArrow() {
+        for(Arrow x : arrowDisplay) {
+            RenderableHolder.getInstance().removeThis(x);
+        }
+        arrowDisplay = new ArrayList<>();
     }
 
     public Pair<Integer,Integer> choseWalkBlock(Player player) {
@@ -289,15 +312,15 @@ public class GameController {
 //        return player;
     }
 
-    public int inputCheck(Set<Integer> available) {
-//        System.out.println(available);
-        int choice = new Scanner(System.in).nextInt();
-        while (!available.contains(choice)) {
-            System.out.println("Invalid input");
-            choice = new Scanner(System.in).nextInt();
-        }
-        return choice;
-    }
+//    public int inputCheck(Set<Integer> available) {
+////        System.out.println(available);
+//        int choice = new Scanner(System.in).nextInt();
+//        while (!available.contains(choice)) {
+//            System.out.println("Invalid input");
+//            choice = new Scanner(System.in).nextInt();
+//        }
+//        return choice;
+//    }
 
     public static GameController getInstance() {
         if(instance == null)
@@ -342,5 +365,9 @@ public class GameController {
     public String getPlayerDisplay() {
         Player player =players.get(playerNow);
         return player.getPlayerName() + " : " + player.getWalkLeft();
+    }
+
+    public ArrayList<Player> getPlayers(){
+        return this.players;
     }
 }

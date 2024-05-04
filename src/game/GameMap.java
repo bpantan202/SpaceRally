@@ -103,7 +103,7 @@ public class GameMap {
     }
 
     public void addLandmark(String name, int point, int posX, int posY) {
-        Landmark landmark = new Landmark(name,"landmark/"+name+".png",3,7,3);
+        Landmark landmark = new Landmark(name,"landmark/"+name+".png",point,posX,posY);
         defaultMap[posY][posX] = landmark;
         landmarkArrayList.add(landmark);
     }
@@ -112,12 +112,24 @@ public class GameMap {
 //        resetHoldMap();
 //        defaultMap[1][0] = new Key(0,1);
 //        defaultMap[2][1] = new Mission(1,2);
-        addLandmark("Earth",8,7,3);
+        addLandmark("Earth",5,7,3);
+        addLandmark("Mercury",4,4,0);
+        addLandmark("moon",3,9,6);
+        addLandmark("redmoon",6,0,5);
+        addLandmark("sun",10,1,3);
         defaultMap[3][2] = new ExtraDoor(2,2,3);
         defaultMap[1][6] = new SolidBlock(6,1);
         defaultMap[1][7] = new SolidBlock(7,1);
         defaultMap[1][8] = new SolidBlock(8,1);
         defaultMap[1][9] = new SolidBlock(9,1);
+
+        defaultMap[2][0] = new SolidBlock(0,2);
+        defaultMap[3][0] = new SolidBlock(0,3);
+        defaultMap[4][0] = new SolidBlock(0,4);
+        defaultMap[2][1] = new SolidBlock(1,2);
+        defaultMap[4][1] = new SolidBlock(1,4);
+        defaultMap[2][2] = new SolidBlock(2,2);
+        defaultMap[4][2] = new SolidBlock(2,4);
 
         for(int i=0; i<Y_SIZE; i++){
             for(int j=0; j< X_SIZE; j++){

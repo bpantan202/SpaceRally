@@ -1,7 +1,5 @@
 package main;
 
-import GUI.SpaceCell;
-import GUI.SpacePane;
 import game.GameController;
 import javafx.application.Application;
 import javafx.application.Platform;

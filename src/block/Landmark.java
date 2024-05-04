@@ -24,17 +24,23 @@ public class Landmark extends ConditionsBlock{
         if(!player.getPlanetVisit().contains(this)) {
             player.getPlanetVisit().add(this);
             player.setScore(player.getScore() + this.point);
+
+            if(player.getMission().contains(this)) {
+                player.getMission().remove(this);
+                int extraScore = RandomNum.randomNum(2,6);
+                player.setScore(player.getScore() + extraScore);
+                System.out.println("You got " + extraScore + " point from # Mission #");
+            }
         }
-        if(player.getMission().contains(this)) {
-            player.getMission().remove(this);
-            int extraScore = RandomNum.randomNum(2,6);
-            player.setScore(player.getScore() + extraScore);
-            System.out.println("You got " + extraScore + " point from # Mission #");
-        }
+
     }
 
     public char ShowStatus(){
         return '^';
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     @Override
