@@ -47,10 +47,14 @@ public abstract class Block implements ConsoleShow, Renderable {
     public int getZ() {
         return 0;
     }
+//    @Override
+//    public void draw(GraphicsContext gc) {
+////        gc.drawImage(new Image("Block.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
+////        gc.fillText(getPosition().getFirst() +","+ getPosition().getSecond(),getDisplayPosX(),getDisplayPosY());
+//    }
     @Override
     public void draw(GraphicsContext gc) {
-//        gc.drawImage(new Image("Block.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
-//        gc.fillText(getPosition().getFirst() +","+ getPosition().getSecond(),getDisplayPosX(),getDisplayPosY());
+//        gc.drawImage(new Image("block-plain.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
     }
 
 }

@@ -61,6 +61,9 @@ public class Main2 extends Application {
         PlayerStatusPane playerStatusPane = new PlayerStatusPane(gameController.getPlayers(),gc);
         rootPane.getChildren().add(playerStatusPane);
 
+        TurnPane turnPane = new TurnPane(gc);
+        rootPane.getChildren().add(turnPane);
+
         ControlPane controlPane = new ControlPane();
         rootPane.getChildren().add(controlPane);
 

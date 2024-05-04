@@ -1,10 +1,10 @@
 package game;
 
-import GUI.ControlPane;
-import GUI.RenderableHolder;
+import GUI.*;
 import block.*;
 import display.Arrow;
 import function.Pair;
+import javafx.scene.canvas.GraphicsContext;
 import player.Player;
 import special.RandomDice;
 import special.RandomNum;
@@ -68,7 +68,6 @@ public class GameController {
         if(amountPlayer >= 4){
             newPlayer("Yellow");
         }
-
         gameMap.printHoldMap();
 
         playTurn();
