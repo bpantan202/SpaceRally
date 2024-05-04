@@ -367,4 +367,8 @@ public class GameController {
         Player player =players.get(playerNow);
         return player.getPlayerName() + " : " + player.getWalkLeft();
     }
+
+    public ArrayList<Player> getPlayers(){
+        return this.players;
+    }
 }

@@ -68,17 +68,22 @@ public class Player {
 
     //this one is the corner player pic
     public void drawPlayer(GraphicsContext gc, String color, int posX, int posY) {
-        if (Objects.equals(color, "yellow")) {
+        if (Objects.equals(color, "Yellow")) {
             playerImg = Load.yellowPlayer;
-        } else if (Objects.equals(color, "red")) {
+        } else if (Objects.equals(color, "Red")) {
             playerImg = Load.redPlayer;
-        } else if (Objects.equals(color, "green")) {
+        } else if (Objects.equals(color, "Green")) {
             playerImg = Load.greenPlayer;
         } else {
             playerImg = Load.grayPlayer;
         }
+//        int diameter = 150;
+//        gc.setFill(Color.WHITE);
+//        gc.fillOval(posX,posY,diameter,diameter);
         int diameter = 150;
-        gc.setFill(Color.WHITE);
+        Color transparentColor = Color.rgb(0, 0, 0, 0);
+
+        gc.setFill(transparentColor);
         gc.fillOval(posX,posY,diameter,diameter);
 
         double imageWidth = 100; // Adjust the width of the player image
@@ -86,9 +91,9 @@ public class Player {
         gc.drawImage(playerImg, posX + (diameter - imageWidth) / 2, posY + (diameter - imageHeight) / 2, imageWidth, imageHeight);
 
 
-        gc.setFill(Color.WHITE);
-        gc.setFont(new Font(20));
-        gc.fillText("Score : "+ getScore(),posX+35,posY+175 );
+//        gc.setFill(Color.WHITE);
+//        gc.setFont(new Font(20));
+//        gc.fillText("Score : "+ getScore(),posX+35,posY+175 );
     }
 
     public Integer getKeyAmount() {
