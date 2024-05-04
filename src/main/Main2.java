@@ -29,9 +29,9 @@ public class Main2 extends Application {
         GraphicsContext gc = paintPane.getGraphicsContext2D();
         RenderableHolder renderableHolder = RenderableHolder.getInstance();
 
-        ControlPane controlPane = new ControlPane();
-
-        rootPane.getChildren().add(controlPane);
+//        ControlPane controlPane = new ControlPane();
+//
+//        rootPane.getChildren().add(controlPane);
 //        ControlPane controlPane = new ControlPane();
 //        rootPane.getChildren().add(controlPane);
 
