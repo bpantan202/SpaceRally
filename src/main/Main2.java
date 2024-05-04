@@ -69,9 +69,10 @@ public class Main2 extends Application {
         ControlPane controlPane = new ControlPane();
         rootPane.getChildren().add(controlPane);
 
-        paintPane.drawAll(renderableHolder.getObjects());
+
         ArrayList<Boolean> valid =  GameController.getInstance().askValid();
         controlPane.setValidButton(valid.get(0), valid.get(1), valid.get(2), valid.get(3));
+        paintPane.drawAll(renderableHolder.getObjects());
         controlPane.updateGameText(GameController.getInstance().getPlayerDisplay());
 
         MenuPane menuPane = new MenuPane();

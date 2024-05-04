@@ -1,6 +1,5 @@
 package game;
 
-import GUI.ControlPane;
 import GUI.RenderableHolder;
 import block.*;
 import display.Arrow;
@@ -57,17 +56,21 @@ public class GameController {
 //        am.add(4);
 //        int amPlayer = inputCheck(am);
 //        this.amountPlayer = amPlayer;
-        this.amountPlayer = 2; ////
+        this.amountPlayer = 4; ////
 
 
         newPlayer("Gray");
         newPlayer("Green");
-        if(amountPlayer >= 3){
-            newPlayer("Red");
-        }
-        if(amountPlayer >= 4){
-            newPlayer("Yellow");
-        }
+        newPlayer("Red");
+        newPlayer("Yellow");
+
+
+//        if(amountPlayer >= 3){
+//            newPlayer("Red");
+//        }
+//        if(amountPlayer >= 4){
+//            newPlayer("Yellow");
+//        }
 
         gameMap.printHoldMap();
 

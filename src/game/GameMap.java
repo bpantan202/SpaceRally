@@ -119,7 +119,7 @@ public class GameMap {
         addLandmark("Moon",3,9,6);
         addLandmark("Redmoon",6,0,5);
         addLandmark("Sun",10,0,3);
-        defaultMap[3][1] = new ExtraDoor(6,1,3);
+        defaultMap[3][1] = new ExtraDoor(5,1,3);
         defaultMap[1][6] = new SolidBlock(6,1);
         defaultMap[1][7] = new SolidBlock(7,1);
         defaultMap[1][8] = new SolidBlock(8,1);
@@ -139,6 +139,7 @@ public class GameMap {
         for(int i=0; i<Y_SIZE; i++){
             for(int j=0; j< X_SIZE; j++){
                 if(defaultMap[i][j] != null){
+                    RenderableHolder.getInstance().removeThis(gameMap[i][j]);
                     gameMap[i][j] = defaultMap[i][j];
                 }
             }
