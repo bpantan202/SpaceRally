@@ -1,5 +1,6 @@
 package block;
 
+import game.GameMap;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import player.Player;
@@ -23,17 +24,27 @@ public class ExtraDoor extends ConditionsBlock{
     @Override
     public boolean canWalk(Player player) {
 
-        if(player.getKeyAmount() >= keyAmount){
-            if(askToOpenDoor()){
-                player.getExtraDoor().add(this);
-                player.setKeyAmount(player.getKeyAmount() - keyAmount);
-//                return true;
-            }
-        }
+
         if(player.getExtraDoor().contains(this)){
             return true;
         }
+        else if(player.getKeyAmount() >= keyAmount){
+//            if(askToOpenDoor()){
+//                player.getExtraDoor().add(this);
+//                player.setKeyAmount(player.getKeyAmount() - keyAmount);
+////                return true;
+//            }
+            return true;
+        }
         return false;
+    }
+
+    @Override
+    public void landOnBlock(Player player, GameMap gameMap) {
+        if(!player.getExtraDoor().contains(this)){
+            player.setKeyAmount(player.getKeyAmount() - keyAmount);
+            player.getExtraDoor().add(this);
+        }
     }
 
     public boolean askToOpenDoor() {

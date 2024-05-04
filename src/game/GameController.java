@@ -234,7 +234,7 @@ public class GameController {
             }
         }
         ArrayList<Boolean> res = new ArrayList<>(Arrays.asList(left, right, up, down));
-        System.out.println(res + "_"+ posXBefore );
+//        System.out.println(res + "_"+ posXBefore );
         return res;
     }
 
