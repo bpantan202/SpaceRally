@@ -1,8 +1,10 @@
 package GUI;
+import javafx.application.Platform;
 import player.*;
 import special.*;
 
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -27,6 +29,8 @@ public class Wurfel extends Application {
     };
     private static final ImageView diceImageView = new ImageView();
     private static Timeline timeline;
+    private Button rolldice;
+    private int deg = 30;
 
     public static void main(String[] args) {
         launch(args);
@@ -37,7 +41,7 @@ public class Wurfel extends Application {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
-        new Timeline(new KeyFrame(Duration.seconds(3), e -> stopDice())).play();
+        new Timeline(new KeyFrame(Duration.seconds(2.4), e -> stopDice())).play();
 
 //        int result = RandomDice.roleDice() - 1; // Subtract 1 to match array index
 //        result = result % diceImages.length;
@@ -53,6 +57,13 @@ public class Wurfel extends Application {
 //      result = result % diceImages.length;
         System.out.println("role : " + result);
         Image image = new Image(ClassLoader.getSystemResourceAsStream(diceImages[index]));
+
+        Timeline rotateTimeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(diceImageView.rotateProperty(), deg)),
+                new KeyFrame(Duration.millis(200), new KeyValue(diceImageView.rotateProperty(), (deg))));
+        deg = (deg + 30) % 360; // Update rotation value
+        rotateTimeline.play();
+
         diceImageView.setImage(image);
 
         //stopDice(); // Stop the timeline when the result is obtained
@@ -61,6 +72,80 @@ public class Wurfel extends Application {
     private void stopDice() {
         timeline.stop();
     }
+
+//    public void startCountDownTimer(int pl) {
+//			/*
+//		 * FIX CODES
+//		 * The following code will make the winning cells change to green background,but it will freeze
+//		  the program while it's working.
+//		 * Implement it in a thread so it's will work properly,Don't forget to start the thread.
+//		 * If implement correctly,the block will change one at a time with correct animation. */
+//        Thread t = new Thread(){
+//            @Override
+//            public void run() {
+//                try {
+//                    runCountDownTimer(pl);
+//                } catch (InterruptedException e) {
+//                    Thread.currentThread().interrupt();
+//                }
+//            }
+//        };
+//        t.start();
+//    }
+//    public void runCountDownTimer(int pl) throws InterruptedException {
+//        Timer plTimer = playerTimer[pl];
+//        plTimer.setStop(false);
+//        if(pl==0) {
+//            while (gameStart&&isOTurn && !plTimer.isTimerEmpty()) {
+//                Thread.sleep(20);
+//
+//                Platform.runLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        timerPane[pl].setTimer(plTimer);
+//                        plTimer.decrementTimer(2);
+//                    }
+//                });
+//					/*
+//			 * FIX CODE: There is JavaFX commands inside the code below
+//				Add something to the code below to make JavaFX commands can
+//				function in the thread
+//			 */
+////				timerPane[pl].setTimer(plTimer);
+////
+////				plTimer.decrementTimer(2);
+//            }
+//        }
+//        else {
+//            while (gameStart&&!isOTurn&&!plTimer.isTimerEmpty()) {
+//                Thread.sleep(20);
+//
+//                Platform.runLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        timerPane[pl].setTimer(plTimer);
+//                        plTimer.decrementTimer(2);
+//                    }
+//                });
+//				/*
+//				 *	/*
+//			 * FIX CODE: There is JavaFX commands inside the code below
+//				Add something to the code below to make JavaFX commands can
+//				function in the thread
+//				 */
+////				timerPane[pl].setTimer(plTimer);
+////
+////				plTimer.decrementTimer(2);
+//            }
+//        }
+//        plTimer.setStop(true);
+//
+//        if(plTimer.isTimerEmpty()) {
+//            if(isOTurn)controlPane.updateGameText("X wins!");
+//            else controlPane.updateGameText("O wins!");
+//            return;
+//        }
+//    }
 
     @Override
     public void start(Stage primaryStage) {

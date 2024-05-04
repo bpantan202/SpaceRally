@@ -29,6 +29,11 @@ public class Main2 extends Application {
         GraphicsContext gc = paintPane.getGraphicsContext2D();
         RenderableHolder renderableHolder = RenderableHolder.getInstance();
 
+
+
+        WurfelPane WurfelPane = new WurfelPane(gc);
+        rootPane.getChildren().add(WurfelPane);
+
 //        ControlPane controlPane = new ControlPane();
 //
 //        rootPane.getChildren().add(controlPane);
