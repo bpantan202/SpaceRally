@@ -20,7 +20,6 @@ public class ExtraDoor extends ConditionsBlock{
         return 'D';
     }
 
-
     @Override
     public boolean canWalk(Player player) {
 
