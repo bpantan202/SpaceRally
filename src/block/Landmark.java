@@ -39,6 +39,10 @@ public class Landmark extends ConditionsBlock{
         return '^';
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     @Override
     public boolean canWalk(Player player) {
         if(player.getWalkLeft() == 1){

@@ -54,8 +54,8 @@ public class PlayerStatusPane extends Pane implements Renderable{
              players.get(i).drawPlayer(gc,players.get(i).getPlayerName() ,x , y );
 
              gc.setFill(Color.LIGHTGRAY);
-             gc.setFont(Font.font("Courier New", FontWeight.EXTRA_BOLD, 40));
-             gc.fillText(""+players.get(i).getScore(), x + 360, y + 40);
+             gc.setFont(Font.font("Courier New", FontWeight.EXTRA_BOLD, 35));
+             gc.fillText(String.format("%02d", players.get(i).getScore()), x + 350, y + 30);
 
              gc.setFont(Font.font("Courier New", FontWeight.BOLD, 14));
              gc.fillText("Keys" , x + 150, y + 30);
@@ -64,10 +64,29 @@ public class PlayerStatusPane extends Pane implements Renderable{
                  gc.drawImage(keyImage, x + 195 + (j*20), y + 15, 20, 20);
              }
 
-             gc.fillText("PlanetVisited: " + players.get(i).getPlanetVisit(), x + 150, y + 50);
+             ArrayList<String> planetVisit = new ArrayList<>();
+             for(int j = 0 ; j < players.get(i).getPlanetVisit().size() ; j++){
+                 planetVisit.add(players.get(i).getPlanetVisit().get(j).getName());
+             }
+//             gc.fillText("PlanetVisited:" + planetVisit , x + 150, y + 50);
+             String planetVisitString = "PlanetVisited:";
+             for(int k = 0; k < planetVisit.size(); k++) {
+                 if (k == 2)
+                     planetVisitString += "\n";
+                 planetVisitString += " " + planetVisit.get(k);
+             }
+             gc.fillText(planetVisitString, x + 150, y + 50);
 
-             gc.fillText("Mission: " + players.get(i).getMission(), x + 150, y + 90);
-             gc.fillText("ExtraDoor: " + players.get(i).getExtraDoor(), x + 150, y + 110);
+             ArrayList<String> mission = new ArrayList<>();
+             for(int j = 0 ; j < players.get(i).getMission().size() ; j++){
+                 mission.add(players.get(i).getMission().get(j).getName());
+             }
+             gc.fillText("Mission:" + mission, x + 150, y + 90);
+             gc.fillText("ExtraDoor", x + 150, y + 120);
+             Image checkImage = new Image("Check/check.png");
+             Image notCheckImage = new Image("Check/notcheck.png");
+             if(players.get(i).getExtraDoor().isEmpty()) gc.drawImage(notCheckImage, x + 235 , y + 107, 20, 20);
+             else gc.drawImage(checkImage, x + 235 , y + 106, 25, 20);
 
 //             //debug
 //             System.out.println("==================");

@@ -69,6 +69,9 @@ public class Main2 extends Application {
         controlPane.setValidButton(valid.get(0), valid.get(1), valid.get(2), valid.get(3));
         controlPane.updateGameText(GameController.getInstance().getPlayerDisplay());
 
+        MenuPane menuPane = new MenuPane();
+        rootPane.getChildren().add(menuPane);
+
         AnimationTimer animationTimer = new AnimationTimer() {
 
             private void setButton() {
