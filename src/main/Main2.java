@@ -31,6 +31,11 @@ public class Main2 extends Application {
         GraphicsContext gc = paintPane.getGraphicsContext2D();
         RenderableHolder renderableHolder = RenderableHolder.getInstance();
 
+
+
+        WurfelPane WurfelPane = new WurfelPane(gc);
+        rootPane.getChildren().add(WurfelPane);
+
 //        ControlPane controlPane = new ControlPane();
 //
 //        rootPane.getChildren().add(controlPane);
@@ -67,12 +72,16 @@ public class Main2 extends Application {
         PlayerStatusPane playerStatusPane = new PlayerStatusPane(gameController.getPlayers(),gc);
         rootPane.getChildren().add(playerStatusPane);
 
+        TurnPane turnPane = new TurnPane(gc);
+        rootPane.getChildren().add(turnPane);
+
         ControlPane controlPane = new ControlPane();
         rootPane.getChildren().add(controlPane);
 
-        paintPane.drawAll(renderableHolder.getObjects());
+
         ArrayList<Boolean> valid =  GameController.getInstance().askValid();
         controlPane.setValidButton(valid.get(0), valid.get(1), valid.get(2), valid.get(3));
+        paintPane.drawAll(renderableHolder.getObjects());
         controlPane.updateGameText(GameController.getInstance().getPlayerDisplay());
 
         MenuPane menuPane = new MenuPane();

@@ -53,7 +53,7 @@ private RootPane() {
 //    this.setBackground(background);
     this.setAlignment(Pos.TOP_CENTER);
     this.getChildren().add(paintPane);
-    paintPane.drawTurn();
+//    paintPane.drawTurn();
 //    paintPane.drawPlayerStatus();
 
 //    SpacePane spacePane = new SpacePane();

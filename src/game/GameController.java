@@ -1,10 +1,11 @@
 package game;
 
-import GUI.ControlPane;
 import GUI.RenderableHolder;
+import GUI.*;
 import block.*;
 import display.Arrow;
 import function.Pair;
+import javafx.scene.canvas.GraphicsContext;
 import player.Player;
 import special.RandomDice;
 import special.RandomNum;
@@ -57,17 +58,21 @@ public class GameController {
 //        am.add(4);
 //        int amPlayer = inputCheck(am);
 //        this.amountPlayer = amPlayer;
-        this.amountPlayer = 2; ////
+        this.amountPlayer = 4; ////
 
 
         newPlayer("Gray");
         newPlayer("Green");
-        if(amountPlayer >= 3){
-            newPlayer("Red");
-        }
-        if(amountPlayer >= 4){
-            newPlayer("Yellow");
-        }
+        newPlayer("Red");
+        newPlayer("Yellow");
+
+
+//        if(amountPlayer >= 3){
+//            newPlayer("Red");
+//        }
+//        if(amountPlayer >= 4){
+//            newPlayer("Yellow");
+//        }
 
         gameMap.printHoldMap();
 
@@ -234,7 +239,7 @@ public class GameController {
             }
         }
         ArrayList<Boolean> res = new ArrayList<>(Arrays.asList(left, right, up, down));
-        System.out.println(res + "_"+ posXBefore );
+//        System.out.println(res + "_"+ posXBefore );
         return res;
     }
 

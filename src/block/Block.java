@@ -45,11 +45,16 @@ public abstract class Block implements ConsoleShow, Renderable {
 
     @Override
     public int getZ() {
-        return 0;
+        return -99;
     }
+//    @Override
+//    public void draw(GraphicsContext gc) {
+////        gc.drawImage(new Image("Block.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
+////        gc.fillText(getPosition().getFirst() +","+ getPosition().getSecond(),getDisplayPosX(),getDisplayPosY());
+//    }
     @Override
     public void draw(GraphicsContext gc) {
-//        gc.drawImage(new Image("Block.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
+        gc.drawImage(new Image("BlockA.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
 //        gc.fillText(getPosition().getFirst() +","+ getPosition().getSecond(),getDisplayPosX(),getDisplayPosY());
     }
 

@@ -21,7 +21,7 @@ public class Mission extends Item {
     }
 
     public void randomMission(Player player, GameMap gameMap) {
-        if(player.getMission().size() > 1 || (player.getMission().size() + player.getPlanetVisit().size()) >= gameMap.getLandmarkArrayList().size() ){
+        if(player.getMission().size() >= 2  || (player.getMission().size() + player.getPlanetVisit().size()) >= gameMap.getLandmarkArrayList().size() ){
             return;
         }
 

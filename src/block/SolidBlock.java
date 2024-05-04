@@ -27,6 +27,6 @@ public class SolidBlock extends Block{
 
     @Override
     public void draw(GraphicsContext gc) {
-        gc.drawImage(new Image("SolidBlock.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
+//        gc.drawImage(new Image("SolidBlock.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
     }
 }
