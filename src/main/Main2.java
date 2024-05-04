@@ -1,6 +1,7 @@
 package main;
 
 import GUI.*;
+import Sound.Sound;
 import game.GameController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 
 public class Main2 extends Application {
+    private Sound backgroundMusic;
     @Override
     public void start(Stage primaryStage) throws Exception {
         RootPane rootPane = RootPane.getRootPane();
@@ -56,6 +58,10 @@ public class Main2 extends Application {
 //                System.exit(0);
 //            }
 //        });
+
+        backgroundMusic = new Sound("backgroundMusic.mp3");
+        backgroundMusic.loop();
+
         GameController gameController = GameController.getInstance();
 
         PlayerStatusPane playerStatusPane = new PlayerStatusPane(gameController.getPlayers(),gc);
