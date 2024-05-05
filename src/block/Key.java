@@ -19,16 +19,11 @@ public class Key extends Item{
         gameMap.spawnKey();
     }
 
-
-    @Override
-    public char ShowStatus() {
-        return 'K';
-    }
-
     @Override
     public int getZ() {
         return 20;
     }
+
     @Override
     public void draw(GraphicsContext gc) {
         gc.drawImage(new Image("Key.png"),getDisplayPosX() ,getDisplayPosY(),80,80);

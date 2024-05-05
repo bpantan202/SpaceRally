@@ -12,10 +12,6 @@ public class PlayerBlock extends ConditionsBlock{
         super(player.getPosX(), player.getPosY());
         this.player = player;
     }
-    @Override
-    public char ShowStatus(){
-        return '@';
-    }
 
     @Override
     public boolean canWalk(Player player) {

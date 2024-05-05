@@ -11,11 +11,6 @@ public class SolidBlock extends Block{
     }
 
     @Override
-    public char ShowStatus() {
-        return '#';
-    }
-
-    @Override
     public void landOnBlock(Player player, GameMap gameMap) {
         return;
     }
@@ -27,6 +22,6 @@ public class SolidBlock extends Block{
 
     @Override
     public void draw(GraphicsContext gc) {
-//        gc.drawImage(new Image("SolidBlock.png"),getDisplayPosX() ,getDisplayPosY(),80,80);
+        return;
     }
 }

@@ -6,7 +6,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import player.Player;
 import special.RandomNum;
-import usage.ConsoleShow;
 
 public class Mission extends Item {
     public Mission(int posX, int posY) {
@@ -32,16 +31,8 @@ public class Mission extends Item {
             num = RandomNum.randomNum(0, gameMap.getLandmarkArrayList().size() - 1);
             missionLandmark = gameMap.getLandmarkArrayList().get(num);
         }
-//        while (!gameMap.getLandmarkArrayList().contains(missionLandmark)){
-//            num = RandomNum.randomNum(0, gameMap.getLandmarkArrayList().size() - 1);
-//            missionLandmark = gameMap.getLandmarkArrayList().get(num);
-//        }
-        player.getMission().add(missionLandmark);
-    }
 
-    @Override
-    public char ShowStatus() {
-        return 'M';
+        player.getMission().add(missionLandmark);
     }
 
     @Override

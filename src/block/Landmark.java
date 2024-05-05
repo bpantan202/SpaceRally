@@ -35,10 +35,6 @@ public class Landmark extends ConditionsBlock{
 
     }
 
-    public char ShowStatus(){
-        return '^';
-    }
-
     public String getName(){
         return this.name;
     }
