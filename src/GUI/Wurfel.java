@@ -1,7 +1,4 @@
 package GUI;
-import javafx.application.Platform;
-import player.*;
-import special.*;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -24,8 +21,8 @@ public class Wurfel extends Application {
     private static final int DICE_SIZE = 100;
     private static final Random random = new Random();
     private static final String[] diceImages = {
-            "players/gray.png", "players/gray.png", "players/green.png",
-            "players/green.png", "players/red.png", "players/yellow.png"
+            "players/Gray.png", "players/Gray.png", "players/Green.png",
+            "players/Green.png", "players/Red.png", "players/Yellow.png"
     };
     private static final ImageView diceImageView = new ImageView();
     private static Timeline timeline;
