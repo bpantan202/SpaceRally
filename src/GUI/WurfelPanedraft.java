@@ -21,8 +21,8 @@ public class WurfelPanedraft extends Pane {
 
     private static Timeline timeline;
     private static final String[] diceImages = {
-            "players/gray.png", "players/gray.png", "players/green.png",
-            "players/green.png", "players/red.png", "players/yellow.png"
+            "players/Gray.png", "players/Gray.png", "players/Green.png",
+            "players/Green.png", "players/Red.png", "players/Yellow.png"
     };
 
     private int deg = 30;
@@ -46,7 +46,7 @@ public class WurfelPanedraft extends Pane {
         //Image image = new Image(ClassLoader.getSystemResourceAsStream(diceImages[index]));
         diceImageView.setLayoutX(75);
         diceImageView.setLayoutY(25);
-        diceImageView.setImage(new Image(ClassLoader.getSystemResourceAsStream("players/red.png")));
+        diceImageView.setImage(new Image(ClassLoader.getSystemResourceAsStream("players/Red.png")));
         getChildren().addAll(diceImageView,rollButton);
 
         //RenderableHolder.getInstance().add(this);

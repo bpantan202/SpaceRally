@@ -1,6 +1,7 @@
 package block;
 
 import GUI.RenderableHolder;
+import Sound.Sound;
 import game.GameController;
 import game.GameMap;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,12 +12,15 @@ public class Key extends Item{
     public Key(int posX, int posY) {
         super(posX, posY);
     }
+    private Sound backgroundMusic;
 
     @Override
     public void landOnBlock(Player player, GameMap gameMap) {
         RenderableHolder.getInstance().removeThis(this);
         player.setKeyAmount(player.getKeyAmount() + 1);
         gameMap.spawnKey();
+        backgroundMusic = new Sound("getItemsound.wav");
+        backgroundMusic.jump();
     }
 
     @Override

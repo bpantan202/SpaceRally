@@ -27,8 +27,9 @@ public class TurnPane extends Pane implements Renderable{
                 System.out.println("turnleft" + turnLeft);
                 int turn = -(turnLeft - 11);
                 String playerName = player.getPlayerName();
+                int walkLeft = player.getWalkLeft();
                 System.out.println("turn" + turn);
-                String turnText = "TURN: " + turn + "/" + playerName;
+                String turnText = "TURN: " + turn + "/" + playerName + " | Walk Left :" + walkLeft;
 //
                 gc.setFill(Color.LIGHTGRAY);
                 gc.setFont(Font.font("Courier New", FontWeight.BOLD, 40));
@@ -36,7 +37,7 @@ public class TurnPane extends Pane implements Renderable{
                 double textWidth = gc.getFont().getSize() * turnText.length();
                 double textHeight = gc.getFont().getSize();
 
-                double x = (gc.getCanvas().getWidth() - textWidth) / 2 + 100;
+                double x = (gc.getCanvas().getWidth() - textWidth) / 2 + 150;
                 double y = textHeight + 20;
 //
 //                // Draw the text
