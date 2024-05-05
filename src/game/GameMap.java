@@ -29,19 +29,16 @@ public class GameMap {
         for(int i=0; i<Y_SIZE; i++){
             for(int j=0; j<X_SIZE; j++){
                 gameMap[i][j] = new WalkAbleBlock(j,i);
-//                RenderableHolder.getInstance().add(gameMap[i][j]);
             }
         }
 
         this.setToMapA();
-//        RenderableHolder.getInstance().setObjects(new ArrayList<>());
 
         RenderableHolder.getInstance().add(new Img());
     }
 
     public void setOneBlock(Block block, int x, int y){
         gameMap[y][x] = block;
-//        printHoldMap();
     }
 
     public void clearBlock(int x, int y) {
