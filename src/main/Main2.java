@@ -33,8 +33,9 @@ public class Main2 extends Application {
 
 
 
-        WurfelPane WurfelPane = new WurfelPane(gc);
-        rootPane.getChildren().add(WurfelPane);
+        DicePane dicePane = DicePane.getInstance();
+        rootPane.getChildren().add(dicePane);
+        Thread.sleep(4000);
 
 //        ControlPane controlPane = new ControlPane();
 //

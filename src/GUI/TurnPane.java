@@ -10,6 +10,8 @@ import javafx.scene.text.Text;
 import player.Player;
 
 public class TurnPane extends Pane implements Renderable{
+
+    //    private TurnPane instance;
     private GraphicsContext gc;
 
     public TurnPane(GraphicsContext gc){
@@ -27,9 +29,18 @@ public class TurnPane extends Pane implements Renderable{
                 System.out.println("turnleft" + turnLeft);
                 int turn = -(turnLeft - 11);
                 String playerName = player.getPlayerName();
-                int walkLeft = player.getWalkLeft();
+                //int walkLeft = player.getWalkLeft();
                 System.out.println("turn" + turn);
-                String turnText = "TURN: " + turn + "/" + playerName + " | Walk Left :" + walkLeft;
+                //String turnText = "TURN: " + turn + "/" + playerName + " | Walk Left :" + walkLeft;
+
+
+                String turnText;
+                if(player.getWalkLeft()==null){
+                    turnText = "TURN: " + turn + "/" + playerName + " | Walk Left :" + "waiting";
+                }
+                else{
+                    turnText = "TURN: " + turn + "/" + playerName + " | Walk Left :" + player.getWalkLeft();
+                }
 //
                 gc.setFill(Color.LIGHTGRAY);
                 gc.setFont(Font.font("Courier New", FontWeight.BOLD, 40));
@@ -49,6 +60,17 @@ public class TurnPane extends Pane implements Renderable{
             System.out.println("GameController is null");
         }
     }
+
+//    public TurnPane getInstance() {
+//        if(instance==null){
+//            instance=new TurnPane(gc);
+//        }
+//        return instance;
+//    }
+//
+//    public void setInstance(TurnPane instance) {
+//        this.instance = instance;
+//    }
 
     @Override
     public int getZ() {
