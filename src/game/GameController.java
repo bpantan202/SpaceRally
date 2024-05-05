@@ -2,6 +2,7 @@ package game;
 
 import GUI.RenderableHolder;
 import GUI.*;
+import Sound.Sound;
 import block.*;
 import display.Arrow;
 import function.Pair;
@@ -20,6 +21,8 @@ public class GameController {
     private Integer playerNow;
     private Integer amountPlayer;
     private ArrayList<Arrow> arrowDisplay;
+
+    private Sound backgroundMusic;
 
 
     public GameController(){
@@ -314,7 +317,7 @@ public class GameController {
         dataGM[player.getPosY()][player.getPosX()] = new PlayerBlock(player);
         players.add(player);
         System.out.println(name + " spawn at " + position);
-//        return player;
+//      return player;
     }
 
 //    public int inputCheck(Set<Integer> available) {
@@ -346,6 +349,8 @@ public class GameController {
         }
         else {
             this.playerNow = this.playerNow + 1;
+            backgroundMusic = new Sound("changePlayer.mp3");
+            backgroundMusic.jump();
             playTurn();
         }
     }
