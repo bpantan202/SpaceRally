@@ -1,16 +1,17 @@
-package GUI;
+package display;
 
+import GUI.Renderable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundSize;
 
-public class Img implements Renderable{
+public class ImgBackground implements Renderable {
     private BackgroundSize bgSize;
     private BackgroundImage imgNothing;
     private BackgroundImage imgKey;
 
-    public Img(){}
+    public ImgBackground(){}
 
     public BackgroundImage getImgKey() {
         return imgKey;

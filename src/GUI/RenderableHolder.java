@@ -23,9 +23,6 @@ public class RenderableHolder {
             return -1;
         };
     }
-    public void remove(Renderable object) {
-        objects.remove(object);
-    }
 
     //add entity to array and sort with z
     public void add(Renderable object) {

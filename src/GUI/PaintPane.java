@@ -17,9 +17,6 @@ public class PaintPane extends Canvas{
     private GraphicsContext gc;
     Player one,two,three,four;
 
-    private final int X_SIZE = 10;
-    private final int Y_SIZE = 7;
-
     public PaintPane() {
         super(1600,900);
         gc = getGraphicsContext2D();
@@ -33,25 +30,6 @@ public class PaintPane extends Canvas{
         four.drawPlayer(gc,four.getPlayerName(),1360,40);
     }
 
-//    public void drawTurn() {
-//        double canvasWidth = getWidth();
-//        double rectangleWidth = 100;
-//        double x = (canvasWidth - rectangleWidth) / 2;
-//
-//        double canvasHeight = getHeight();
-//        double rectangleHeight = 100;
-//        double y = 0;
-//
-//        String text = "4";
-//        gc.setFill(Color.WHITE);
-//        gc.setFont(Font.font("Arial", FontWeight.BOLD, 60));
-//
-//        double textWidth = gc.getFont().getSize() * text.length();
-//        double textX = x + (rectangleWidth - textWidth) / 2;
-//        double textY = y + (rectangleHeight + gc.getFont().getSize()) / 2;
-//
-//        gc.fillText(text, textX, textY);
-//    }
 
     public static PaintPane getInstance() {
         if (instance == null)

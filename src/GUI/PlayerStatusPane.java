@@ -22,8 +22,6 @@ import player.Player;
 import java.util.ArrayList;
 
 public class PlayerStatusPane extends Pane implements Renderable{
-    private static PlayerStatusPane instance;
-    private GraphicsContext gc;
     private ArrayList<Player> players;
 
     public PlayerStatusPane(ArrayList<Player> players, GraphicsContext gc){
@@ -88,12 +86,6 @@ public class PlayerStatusPane extends Pane implements Renderable{
              if(players.get(i).getExtraDoor().isEmpty()) gc.drawImage(notCheckImage, x + 235 , y + 107, 20, 20);
              else gc.drawImage(checkImage, x + 235 , y + 106, 25, 20);
 
-//             //debug
-//             System.out.println("==================");
-//             System.out.println(i);
-//             System.out.println("Score: " + players.get(i).getScore());
-//             System.out.println("Keys: " + players.get(i).getKeyAmount());
-//             System.out.println("==================");
          }
 
     }
@@ -108,11 +100,6 @@ public class PlayerStatusPane extends Pane implements Renderable{
         drawPlayerStatus(gc,players);
     }
 
-//    public static PlayerStatusPane getInstance() {
-//        GameController gameController = GameController.getInstance();
-//        if (instance == null)
-//            instance = new PlayerStatusPane(gameController.getPlayers());
-//        return instance;
-//    }
+
 
 }

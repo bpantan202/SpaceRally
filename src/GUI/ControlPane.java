@@ -103,8 +103,4 @@ public class ControlPane extends VBox{
 	public String getGameText() {
 		return gameText.getText();
 	}
-
-	public void setGameText(Text gameText) {
-		this.gameText = gameText;
-	}
 }

@@ -12,13 +12,6 @@ public class Mission extends Item {
         super(posX, posY);
     }
 
-    @Override
-    public void landOnBlock(Player player, GameMap gameMap) {
-        RenderableHolder.getInstance().removeThis(this);
-        gameMap.spawnMission();
-        randomMission(player, gameMap);
-    }
-
     public void randomMission(Player player, GameMap gameMap) {
         if(player.getMission().size() >= 2  || (player.getMission().size() + player.getPlanetVisit().size()) >= gameMap.getLandmarkArrayList().size() ){
             return;
@@ -33,6 +26,12 @@ public class Mission extends Item {
         }
 
         player.getMission().add(missionLandmark);
+    }
+    @Override
+    public void landOnBlock(Player player, GameMap gameMap) {
+        RenderableHolder.getInstance().removeThis(this);
+        gameMap.spawnMission();
+        randomMission(player, gameMap);
     }
 
     @Override

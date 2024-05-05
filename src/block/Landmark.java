@@ -54,6 +54,5 @@ public class Landmark extends ConditionsBlock{
     @Override
     public void draw(GraphicsContext gc) {
         gc.drawImage(new Image(this.picture),getDisplayPosX() ,getDisplayPosY(),80,80);
-//        gc.fillText(this.name,getDisplayPosX(),getDisplayPosY());
     }
 }

@@ -11,9 +11,6 @@ import player.Player;
 
 public class TurnPane extends Pane implements Renderable{
 
-    //    private TurnPane instance;
-    private GraphicsContext gc;
-
     public TurnPane(GraphicsContext gc){
         this.drawTurn(gc);
         RenderableHolder.getInstance().add(this);

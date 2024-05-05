@@ -1,5 +1,6 @@
 package GUI;
 
+import display.ImgBackground;
 import game.GameController;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,7 +23,7 @@ public class SpaceCell extends Pane {
 	private String xURL;
 	private Button button=new Button();
 	private BackgroundSize bgSize;
-	private Img img;
+	private ImgBackground img;
 
 	private BackgroundImage imageKey;
 
@@ -35,7 +36,7 @@ public class SpaceCell extends Pane {
 		setPrefSize(80, 80);
 		setBaseColor(Color.rgb(230, 230, 250));
 		initializeCellColor();
-		this.img = new Img();
+		this.img = new ImgBackground();
 //		this.bgImage = new BackgroundImage[]{};
 //		this.bgFill = new BackgroundFill[]{};
 		this.bgSize = new BackgroundSize(80,80,false,false,false,false);
