@@ -1,0 +1,318 @@
+@startuml
+class GUI.PlayerStatusPane {
+- ArrayList<Player> players
++ <<Create>> PlayerStatusPane(ArrayList<Player>,GraphicsContext)
++ void drawPlayerStatus(GraphicsContext,ArrayList<Player>)
++ int getZ()
++ void draw(GraphicsContext)
+}
+class main.Main2 {
+- Sound backgroundMusic
++ void start(Stage)
++ {static} void main(String[])
+}
+class game.GameController {
+- {static} GameController instance
+- GameMap gameMap
+- ArrayList<Player> players
+- Integer turnLeft
+- Integer playerNow
+- Integer amountPlayer
+- ArrayList<Arrow> arrowDisplay
+- Sound backgroundMusic
++ <<Create>> GameController()
++ void setUpGame()
++ void playTurn()
++ void playTurnEach(int)
++ Pair<Integer,Integer> generateNextBlock(Player,int)
++ ArrayList<Boolean> askValid()
++ void genArrow(Arrow)
++ void removeArrow()
++ void newPlayer(String)
++ {static} GameController getInstance()
++ void nextPlayer()
++ void nextTurn()
++ String getPlayerDisplay()
++ GameMap getGameMap()
++ Integer getTurnLeft()
++ Integer getPlayerNow()
++ ArrayList<Player> getPlayers()
+}
+class special.RandomNum {
++ {static} int randomNum(int,int)
++ {static} Pair<Integer,Integer> randomPosition(int,int,GameMap)
+}
+class function.Pair {
+- A first
+- B second
++ <<Create>> Pair(A,B)
++ A getFirst()
++ B getSecond()
++ String toString()
+}
+class block.Key {
+- Sound backgroundMusic
++ <<Create>> Key(int,int)
++ void landOnBlock(Player,GameMap)
++ int getZ()
++ void draw(GraphicsContext)
+}
+class display.Arrow {
+~ String imgPath
+~ Integer posX
+~ Integer posY
++ <<Create>> Arrow(String,int,int)
++ int getDisplayPosX()
++ int getDisplayPosY()
++ int getZ()
++ void draw(GraphicsContext)
+}
+class special.RandomDice {
++ {static} int roleDice()
+- {static} int roleOneDice()
+}
+abstract class block.Block {
+- Pair<Integer,Integer> position
++ <<Create>> Block(int,int)
++ {abstract}boolean canWalk(Player)
++ {abstract}void landOnBlock(Player,GameMap)
++ void setPosition(int,int)
++ int getDisplayPosX()
++ int getDisplayPosY()
++ int getZ()
++ void draw(GraphicsContext)
+}
+class block.PlayerBlock {
+- Player player
++ <<Create>> PlayerBlock(Player)
++ boolean canWalk(Player)
++ int getZ()
++ void draw(GraphicsContext)
+}
+class GUI.PaintPane {
+- {static} PaintPane instance
+- GraphicsContext gc
+~ Player one
++ <<Create>> PaintPane()
++ {static} PaintPane getInstance()
++ GraphicsContext getGc()
++ void drawAll(ArrayList<Renderable>)
+}
+class GUI.DicePane {
+- {static} DicePane instance
+- {static} ImageView diceImageView1
+- {static} ImageView diceImageView2
+- {static} Timeline timeline
+- {static} String[] diceImages
+- int deg
+- int dicestatus1
+- int dicestatus2
+- Runnable onDiceRolledCallback
++ <<Create>> DicePane()
++ void rollDice()
+- void changeDiceImage()
++ void setOnDiceRolledCallback(Runnable)
+- void stopDice()
++ int getDiceResult()
++ {static} DicePane getInstance()
++ {static} void setInstance(DicePane)
++ int getDeg()
++ void setDeg(int)
++ int getDicestatus1()
++ void setDicestatus1(int)
++ int getDicestatus2()
++ void setDicestatus2(int)
+}
+class block.WalkAbleBlock {
++ <<Create>> WalkAbleBlock(int,int)
++ boolean canWalk(Player)
++ void landOnBlock(Player,GameMap)
+}
+class block.Item {
++ <<Create>> Item(int,int)
+}
+class Sound.Sound {
+- MediaPlayer mediaPlayer
++ <<Create>> Sound(String)
++ void play()
++ void stop()
++ void loop()
++ void jump()
+}
+class GUI.ControlPane {
+- Text gameText
+- Button leftButton
+- Button rightButton
+- Button upButton
+- Button downButton
++ <<Create>> ControlPane()
+- void initializeGameText()
++ void updateGameText(String)
+- void initializeLeftButton()
+- void initializeRightButton()
+- void initializeUpButton()
+- void initializeDownButton()
+- void newLeftButtonHandler()
+- void newRightButtonHandler()
+- void newUpButtonHandler()
+- void newDownButtonHandler()
++ void setValidButton(boolean,boolean,boolean,boolean)
++ String getGameText()
+}
+interface GUI.Renderable {
+~ int getZ()
+~ void draw(GraphicsContext)
+}
+class GUI.RenderableHolder {
+- {static} ArrayList<Renderable> objects
+- Comparator<Renderable> comparator
+- {static} RenderableHolder instance
++ <<Create>> RenderableHolder()
++ void add(Renderable)
++ {static} RenderableHolder getInstance()
++ ArrayList<Renderable> getObjects()
++ void removeThis(Renderable)
+}
+class block.Landmark {
+- String name
+- String picture
+- Integer point
+- Sound backgroundMusic
++ <<Create>> Landmark(String,String,int,int,int)
++ void landOnBlock(Player,GameMap)
++ String getName()
++ boolean canWalk(Player)
++ void draw(GraphicsContext)
+}
+abstract class block.ConditionsBlock {
++ <<Create>> ConditionsBlock(int,int)
++ void landOnBlock(Player,GameMap)
+}
+class display.ImgBackground {
+- BackgroundSize bgSize
+- BackgroundImage imgNothing
+- BackgroundImage imgKey
++ <<Create>> ImgBackground()
++ BackgroundImage getImgKey()
++ BackgroundImage getImgNothing()
++ int getZ()
++ void draw(GraphicsContext)
+}
+class GUI.MenuPane {
++ <<Create>> MenuPane()
+}
+class GUI.RootPane {
+- {static} RootPane instance
++ PaintPane paintPane
+- <<Create>> RootPane()
++ {static} RootPane getRootPane()
+}
+class function.Load {
++ {static} Image yellowPlayer
++ {static} void loadPlayer()
+}
+class block.SolidBlock {
++ <<Create>> SolidBlock(int,int)
++ void landOnBlock(Player,GameMap)
++ boolean canWalk(Player)
++ void draw(GraphicsContext)
+}
+class GUI.TurnPane {
++ <<Create>> TurnPane(GraphicsContext)
++ void drawTurn(GraphicsContext)
++ int getZ()
++ void draw(GraphicsContext)
+}
+class block.Mission {
++ <<Create>> Mission(int,int)
++ void randomMission(Player,GameMap)
++ void landOnBlock(Player,GameMap)
++ int getZ()
++ void draw(GraphicsContext)
+}
+class player.Player {
+- Image playerImg
+- String playerName
+- Integer score
+- Integer keyAmount
+- Integer walkLeft
+- ArrayList<Landmark> planetVisit
+- ArrayList<Landmark> mission
+- ArrayList<ExtraDoor> extraDoor
+- Pair<Integer,Integer> position
+- Pair<Integer,Integer> posBefore
++ <<Create>> Player(String,int,int)
++ void printPlayerStatus()
++ void setPosition(Pair<Integer,Integer>,GameMap,boolean)
++ void drawPlayer(GraphicsContext,String,int,int)
++ Integer getKeyAmount()
++ void setKeyAmount(int)
++ Integer getPosX()
++ Integer getPosY()
++ Integer getPosXBefore()
++ Integer getPosYBefore()
++ Pair<Integer,Integer> getPosition()
++ ArrayList<Landmark> getMission()
++ ArrayList<Landmark> getPlanetVisit()
++ int getScore()
++ void setScore(Integer)
++ Integer getWalkLeft()
++ void setWalkLeft(int)
++ ArrayList<ExtraDoor> getExtraDoor()
++ void setPosBefore(Pair<Integer,Integer>)
++ String getPlayerName()
+}
+class game.GameMap {
+- int X_SIZE
+- int Y_SIZE
+- Block[][] gameMap
+- Block[][] defaultMap
+- ArrayList<Landmark> landmarkArrayList
++ <<Create>> GameMap()
++ void resetWholeMap()
++ void setOneBlock(Block,int,int)
++ void clearBlock(int,int)
++ boolean checkCanWalk(int,int,Player)
++ boolean checkAvailable(Pair<Integer,Integer>)
++ void spawnKey()
++ void spawnMission()
++ void addLandmark(String,int,int,int)
++ void setToMapA()
++ void addShow()
++ Block[][] getGameMap()
++ int getX_SIZE()
++ int getY_SIZE()
++ ArrayList<Landmark> getLandmarkArrayList()
+}
+class block.ExtraDoor {
+- Integer keyAmount
++ <<Create>> ExtraDoor(int,int,int)
++ boolean canWalk(Player)
++ void landOnBlock(Player,GameMap)
++ void draw(GraphicsContext)
+}
+
+
+GUI.Renderable <|.. GUI.PlayerStatusPane
+javafx.scene.layout.Pane <|-- GUI.PlayerStatusPane
+javafx.application.Application <|-- main.Main2
+block.Item <|-- block.Key
+GUI.Renderable <|.. display.Arrow
+GUI.Renderable <|.. block.Block
+block.ConditionsBlock <|-- block.PlayerBlock
+javafx.scene.canvas.Canvas <|-- GUI.PaintPane
+javafx.scene.layout.Pane <|-- GUI.DicePane
+block.Block <|-- block.WalkAbleBlock
+block.WalkAbleBlock <|-- block.Item
+javafx.scene.layout.VBox <|-- GUI.ControlPane
+block.ConditionsBlock <|-- block.Landmark
+block.Block <|-- block.ConditionsBlock
+GUI.Renderable <|.. display.ImgBackground
+javafx.scene.layout.Pane <|-- GUI.MenuPane
+GUI.StackPane <|-- GUI.RootPane
+block.Block <|-- block.SolidBlock
+GUI.Renderable <|.. GUI.TurnPane
+javafx.scene.layout.Pane <|-- GUI.TurnPane
+block.Item <|-- block.Mission
+block.ConditionsBlock <|-- block.ExtraDoor
+@enduml
